@@ -13,9 +13,8 @@ public class DataSimulatorService {
     private final Random random = new Random();
 
 
-
     public SensorData generateRandomData() {
-        SensorData sensorData= new SensorData();
+        SensorData sensorData = new SensorData();
 
         sensorData.setId("sensor-" + UUID.randomUUID().toString().substring(0, 8));
 
@@ -26,26 +25,26 @@ public class DataSimulatorService {
         String tipo = getTipoRandom();
 
         switch (tipo) {
-            case "temperatura":
+            case "temperatura" -> {
                 sensorData.setTipo("temperatura");
                 sensorData.setUnita("°C");
                 sensorData.setValore(random.nextInt(40 - 2 + 1) + 2);
-                break;
-            case "umidità":
+            }
+            case "umidità" -> {
                 sensorData.setTipo("umidità");
                 sensorData.setUnita("%");
-                sensorData.setValore(random.nextInt(100 - 30 +1) + 30);
-                break;
-            case "traffico":
+                sensorData.setValore(random.nextInt(100 - 30 + 1) + 30);
+            }
+            case "traffico" -> {
                 sensorData.setTipo("traffico");
                 sensorData.setUnita("%");
                 sensorData.setValore(random.nextInt(100 - 1 + 1) + 1);
-                break;
-            case "pm10":
+            }
+            case "pm10" -> {
                 sensorData.setTipo("pm10");
                 sensorData.setUnita("µg/m³");
-                sensorData.setValore(random.nextInt(200 - 10 +1) + 10);
-                break;
+                sensorData.setValore(random.nextInt(200 - 10 + 1) + 10);
+            }
         }
         return sensorData;
     }
@@ -63,6 +62,4 @@ public class DataSimulatorService {
     }
 }
 
-//"Riprendiamo da KafkaProducerService"
-//oppure
-//"Iniziamo a inviare i dati simulati a Kafka"
+//riprendere con il KafkaConsumerService
