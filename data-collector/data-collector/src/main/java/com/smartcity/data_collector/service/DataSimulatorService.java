@@ -16,7 +16,7 @@ public class DataSimulatorService {
     public SensorData generateRandomData() {
         SensorData sensorData = new SensorData();
 
-        sensorData.setId("sensor-" + UUID.randomUUID().toString().substring(0, 8));
+        sensorData.setId(UUID.randomUUID());;
 
         sensorData.setZona(getZonaRandom());
 
@@ -61,5 +61,3 @@ public class DataSimulatorService {
         return zone[index];
     }
 }
-
-//riprendere con il KafkaConsumerService

@@ -1,6 +1,25 @@
 spring:
   kafka:
     bootstrap-servers: localhost:9092
+
+    # PRODUCER
     producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-serializer:   org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    # CONSUMER
+    consumer:
+      group-id: smartcity-group
+      key-deserializer:   org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        # consenti al Deserializer di fidarsi dei tuoi model
+        spring.json.trusted.packages: com.smartcity.data_collector.model
+
+# topic dedicato, che poi recuperi con @Value("${kafka.topic.sensor-data}")
+kafka:
+  topic:
+    sensor-data: sensor-data
+
+  simulator:
+    publish-interval-ms: 5000
