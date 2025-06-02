@@ -1,6 +1,6 @@
 package com.smartcity.data_collector.service;
 
-import com.smartcity.data_collector.model.SensorData;
+import com.smartcity.common.model.SensorData;
 import org.springframework.stereotype.Service;
 
 

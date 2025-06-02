@@ -1,6 +1,6 @@
 package com.smartcity.data_collector.service;
 
-import com.smartcity.data_collector.model.SensorData;
+import com.smartcity.common.model.SensorData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -23,5 +23,6 @@ public class SensorDataPublisherService {
     public void publishSensorData() {
         SensorData data = simulator.generateRandomData();
         producer.sendSensorData(topic, data);
+
     }
 }

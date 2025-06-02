@@ -1,0 +1,41 @@
+
+
+services:
+  # -------------------------------------------------------------------
+  # 1) ZooKeeper (dipendenza necessaria per Kafka)
+  # -------------------------------------------------------------------
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zk-smartcity
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    ports:
+      - "2181:2181"
+    volumes:
+      - ./data/zookeeper:/bitnami/zookeeper
+
+  # -------------------------------------------------------------------
+  # 2) Kafka Broker
+  # -------------------------------------------------------------------
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka-smartcity
+    environment:
+      # Indica al broker dove trovare ZooKeeper
+      - KAFKA_ZOOKEEPER_CONNECT=zk-smartcity:2181
+      # Permette connessioni in chiaro (plaintext)
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      # Configura la porta di ascolto interna
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      # Indirizzo “pubblico” che altri container/client useranno per Kafka
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      # ID del broker (numero univoco)
+      - KAFKA_BROKER_ID=1
+      # Numero di partizioni di default (per topic creati senza parametri)
+      - KAFKA_NUM_PARTITIONS=1
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./data/kafka:/bitnami/kafka
+    depends_on:
+      - zookeeper

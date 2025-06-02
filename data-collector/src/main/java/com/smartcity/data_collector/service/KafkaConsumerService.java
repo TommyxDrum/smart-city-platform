@@ -1,6 +1,6 @@
 package com.smartcity.data_collector.service;
 
-import com.smartcity.data_collector.model.SensorData;
+import com.smartcity.common.model.SensorData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;

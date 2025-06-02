@@ -1,0 +1,27 @@
++------------------------+        sends       +--------------+        receives     +-------------------------+
+| Data Simulator Service |  ----------->     |  KafkaBroker  |  ------------->     | KafkaConsumer Service   |
+|  - generateRandomData  |                   |  - Topic(s)   |                     |  - consumeSensorData()  |
++------------------------+                   +---------------+                     +-------------------------+
+           |                                                                                |
+           |                                                                                v
+           |                                                                         +------------------+
+           |                                                                         | Processing & DB  |
+           |                                                                         |  - save data     |
+           v                                                                                   |
++------------------------+                                                                     |
+| SensorData (model)     |                                                                     |
++------------------------+                                                                     v
+                                                                              +-----------------------------+
+                                                                              | Dashboard / API / Storage   |
+                                                                              +-----------------------------+
+
+
+Data Simulator Service genera i dati (SensorData).
+
+KafkaProducerService invia i dati al Kafka Broker.
+
+KafkaConsumerService riceve i dati dal broker.
+
+I dati vengono poi passati al microservizio di Processing & DB.
+
+Infine, il risultato finisce nel Dashboard/API/Storage.

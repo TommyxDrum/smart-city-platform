@@ -1,0 +1,24 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: data-processor-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        # deserializza automaticamente in SensorData (package completo)
+        spring.json.trusted.packages: com.smartcity.data_collector.model
+        spring.json.value.default.type: com.smartcity.data_collector.model.SensorData
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: smartcity
+
+# Opzionale: configurazioni relative a scheduler o parametri di processamento
+processor:
+  # ad esempio soglia minima per tipo “temperatura”
+  temperatura:
+    soglia: 25.0
