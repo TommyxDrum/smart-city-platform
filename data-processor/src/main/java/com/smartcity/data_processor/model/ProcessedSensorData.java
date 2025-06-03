@@ -1,6 +1,7 @@
 package com.smartcity.data_processor.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -10,21 +11,15 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Document(collection = "processed_sensor_data")
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "processed_sensor_data")
 public class ProcessedSensorData {
-
     @Id
-    private UUID id;               // stesso ID del SensorData originale (o uno nuovo)
-
-    private String tipo;           // es. “temperatura”, “umidità”, …
-    private double valore;         // valore misurato o elaborato
-    private String unita;          // “°C”, “%”, …
-    private LocalDateTime timestamp;  // momento della rilevazione originale
-    private String zona;           // “Zona Nord”, “Centro”, …
-
-    private LocalDateTime processedAt; // momento in cui è stato elaborato
-
-    // Potresti aggiungere altri campi aggregati, es. media, flag di allarme, ecc.
+    private String id;                // ID generato dal DB (opzionale)
+    private UUID idSensorData;          // lo stesso ID che arriva dal SensorData
+    private LocalDateTime timestamp;        // marca temporale originale
+    private Double originalValue;     // valore grezzo
+    private Double computedValue;     // valore elaborato/escalato
+    // puoi aggiungere altri campi di aggregazione/statistica, metadati, ecc.
 }

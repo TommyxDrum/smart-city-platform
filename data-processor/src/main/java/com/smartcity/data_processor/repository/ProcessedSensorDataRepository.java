@@ -7,5 +7,4 @@ import java.util.UUID;
 
 public interface ProcessedSensorDataRepository
         extends MongoRepository<ProcessedSensorData, UUID> {
-    // Qui puoi definire query extra, es. findByTipoAndZona(...)
 }

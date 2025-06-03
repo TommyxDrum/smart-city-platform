@@ -4,7 +4,7 @@ import com.smartcity.common.model.SensorData;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-@Service  // 1. Dichiara questo bean come servizio gestito da Spring
+@Service
 public class KafkaProducerService {
 
     // 2. Iniettiamo un KafkaTemplate parametrizzato con <String, SensorData>

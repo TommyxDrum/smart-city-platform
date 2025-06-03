@@ -12,8 +12,7 @@ import java.util.UUID;
 public class DataSimulatorService {
     private final Random random = new Random();
 
-
-    public SensorData generateRandomData() {
+        public SensorData generateRandomData() {
         SensorData sensorData = new SensorData();
 
         sensorData.setId(UUID.randomUUID());;
