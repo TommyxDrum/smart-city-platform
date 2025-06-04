@@ -17,9 +17,9 @@ import java.util.UUID;
 public class ProcessedSensorData {
     @Id
     private String id;                // ID generato dal DB (opzionale)
+    private String tipo;               // Tipo valore
     private UUID idSensorData;          // lo stesso ID che arriva dal SensorData
     private LocalDateTime timestamp;        // marca temporale originale
     private Double originalValue;     // valore grezzo
     private Double computedValue;     // valore elaborato/escalato
-    // puoi aggiungere altri campi di aggregazione/statistica, metadati, ecc.
 }

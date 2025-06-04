@@ -10,7 +10,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         # consenti al Deserializer di fidarsi dei tuoi model
-        spring.json.trusted.packages: com.smartcity.data_collector.model
+        spring.json.trusted.packages: com.smartcity.common.model
 
   data:
     mongodb:
@@ -29,4 +29,9 @@ kafka:
 processor:
   temperatura:
     soglia: 25.0
+
+# application.yml (o application-<profile>.yml)
+server:
+  port: 8081
+
 
